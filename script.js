@@ -1,26 +1,26 @@
 const music = document.getElementById("bgMusic");
+const app = document.getElementById("app");
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 
 let musicStarted = false;
 
-/* 🎵 Start music ONLY after real user interaction */
+/* 🎵 START MUSIC – browser safe */
 function startMusic() {
   if (musicStarted) return;
 
   music.volume = 0.7;
-
   music.play()
     .then(() => {
       musicStarted = true;
-      console.log("Music started");
+      console.log("Music playing");
     })
     .catch(err => {
-      console.log("Music blocked:", err);
+      console.log("Music blocked until interaction", err);
     });
 }
 
-/* attach to all valid user actions */
+/* User interaction */
 document.addEventListener("click", startMusic);
 document.addEventListener("touchstart", startMusic);
 
@@ -33,39 +33,27 @@ function moveNo() {
 noBtn.addEventListener("mouseover", moveNo);
 noBtn.addEventListener("touchstart", moveNo);
 
-/* 💖 YES → loading → special message */
+/* 💖 YES FLOW */
 yesBtn.addEventListener("click", () => {
-  startMusic(); // force music again on YES click
+  startMusic(); // force music on YES
 
-  document.body.innerHTML = `
+  app.innerHTML = `
+    <h2 style="color:#ff5fa2;">Processing your YES 💖</h2>
+    <p>Please wait… 🥹</p>
+
     <div style="
-      height:100vh;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      background:#fff0f5;
-      text-align:center;
-      font-family:Arial;
-      padding:20px;
+      width:220px;
+      height:14px;
+      border-radius:10px;
+      background:#ffd6e8;
+      overflow:hidden;
     ">
-      <h2 style="color:#ff5fa2;">Processing your YES 💖</h2>
-      <p>Please wait… 🥹</p>
-
-      <div style="
-        width:220px;
-        height:14px;
-        border-radius:10px;
-        background:#ffd6e8;
-        overflow:hidden;
-      ">
-        <div id="loader" style="
-          width:0%;
-          height:100%;
-          background:#ff5fa2;
-          transition:width 3s;
-        "></div>
-      </div>
+      <div id="loader" style="
+        width:0%;
+        height:100%;
+        background:#ff5fa2;
+        transition:width 3s;
+      "></div>
     </div>
   `;
 
@@ -74,34 +62,15 @@ yesBtn.addEventListener("click", () => {
   }, 100);
 
   setTimeout(() => {
-    document.body.innerHTML = `
-      <div style="
-        height:100vh;
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-        align-items:center;
-        background:#fff0f5;
-        text-align:center;
-        font-family:Arial;
-        padding:20px;
-      ">
-        <img src="photo.jpg" style="
-          width:170px;
-          height:170px;
-          border-radius:50%;
-          border:5px solid #ff5fa2;
-          margin-bottom:15px;
-        ">
+    app.innerHTML = `
+      <img src="photo.jpg" class="her-photo">
+      <h1 style="color:#ff5fa2;">💖 YAYYYYY 💖</h1>
 
-        <h1 style="color:#ff5fa2;">💖 YAYYYYY 💖</h1>
-
-        <div class="special-message">
-          From the moment you came into my life,<br>
-          everything felt brighter.<br><br>
-          I don’t just want today —<br>
-          I want every day with you 💕
-        </div>
+      <div class="special-message">
+        From the moment you came into my life,<br>
+        everything felt brighter.<br><br>
+        I don’t just want today —<br>
+        I want every day with you 💕
       </div>
     `;
   }, 3500);
