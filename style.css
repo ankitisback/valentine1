@@ -4,8 +4,8 @@
 
 body {
   margin: 0;
-  background: linear-gradient(135deg, #ffe4ec, #ffffff);
   font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ffe4ec, #ffffff);
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -28,8 +28,10 @@ h1 {
   font-size: 22px;
 }
 
-p {
-  font-size: 18px;
+.tap-note {
+  font-size: 14px;
+  color: #ff5fa2;
+  margin-bottom: 8px;
 }
 
 .her-photo {
@@ -39,12 +41,18 @@ p {
   border-radius: 50%;
   border: 5px solid #ff5fa2;
   margin: 15px 0;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+
+.question {
+  font-size: 18px;
+  color: #ff5fa2;
+  font-weight: bold;
 }
 
 .buttons {
   position: relative;
   height: 100px;
+  margin-top: 10px;
 }
 
 button {
@@ -66,19 +74,12 @@ button {
   position: absolute;
 }
 
-.heart {
-  position: absolute;
-  font-size: 22px;
-  animation: float 4s linear infinite;
-}
-
-@keyframes float {
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-100vh);
-    opacity: 0;
-  }
+.special-message {
+  background: #fff6fb;
+  padding: 14px;
+  border-radius: 14px;
+  font-size: 15px;
+  color: #444;
+  line-height: 1.6;
+  margin-top: 12px;
 }
