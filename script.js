@@ -1,23 +1,42 @@
-const noBtn = document.getElementById("noBtn");
-const yesBtn = document.getElementById("yesBtn");
 const music = document.getElementById("bgMusic");
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
 
-// 🎵 Start music on first tap (browser rule)
-document.body.addEventListener("click", () => {
-  music.play();
-}, { once: true });
+let musicStarted = false;
 
-// 😈 Move NO button
+/* 🎵 Start music ONLY after real user interaction */
+function startMusic() {
+  if (musicStarted) return;
+
+  music.volume = 0.7;
+
+  music.play()
+    .then(() => {
+      musicStarted = true;
+      console.log("Music started");
+    })
+    .catch(err => {
+      console.log("Music blocked:", err);
+    });
+}
+
+/* attach to all valid user actions */
+document.addEventListener("click", startMusic);
+document.addEventListener("touchstart", startMusic);
+
+/* 😈 Move NO button */
 function moveNo() {
-  const x = Math.random() * 220 - 110;
-  const y = Math.random() * 220 - 110;
-  noBtn.style.transform = `translate(${x}px, ${y}px) scale(0.85)`;
+  const x = Math.random() * 200 - 100;
+  const y = Math.random() * 200 - 100;
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
 }
 noBtn.addEventListener("mouseover", moveNo);
 noBtn.addEventListener("touchstart", moveNo);
 
-// 💖 YES prank + reveal
+/* 💖 YES → loading → special message */
 yesBtn.addEventListener("click", () => {
+  startMusic(); // force music again on YES click
+
   document.body.innerHTML = `
     <div style="
       height:100vh;
@@ -26,8 +45,9 @@ yesBtn.addEventListener("click", () => {
       justify-content:center;
       align-items:center;
       background:#fff0f5;
-      font-family:Arial;
       text-align:center;
+      font-family:Arial;
+      padding:20px;
     ">
       <h2 style="color:#ff5fa2;">Processing your YES 💖</h2>
       <p>Please wait… 🥹</p>
@@ -38,7 +58,6 @@ yesBtn.addEventListener("click", () => {
         border-radius:10px;
         background:#ffd6e8;
         overflow:hidden;
-        margin-top:12px;
       ">
         <div id="loader" style="
           width:0%;
@@ -63,8 +82,9 @@ yesBtn.addEventListener("click", () => {
         justify-content:center;
         align-items:center;
         background:#fff0f5;
-        font-family:Arial;
         text-align:center;
+        font-family:Arial;
+        padding:20px;
       ">
         <img src="photo.jpg" style="
           width:170px;
@@ -73,22 +93,16 @@ yesBtn.addEventListener("click", () => {
           border:5px solid #ff5fa2;
           margin-bottom:15px;
         ">
-        <h1 style="color:#ff5fa2;">
-          💖 YAYYYYY 💖<br>
-          It was always YOU 🥰
-        </h1>
+
+        <h1 style="color:#ff5fa2;">💖 YAYYYYY 💖</h1>
+
+        <div class="special-message">
+          From the moment you came into my life,<br>
+          everything felt brighter.<br><br>
+          I don’t just want today —<br>
+          I want every day with you 💕
+        </div>
       </div>
     `;
   }, 3500);
 });
-
-// 💕 Floating hearts
-setInterval(() => {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerText = "💖";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.bottom = "0";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 4000);
-}, 350);
