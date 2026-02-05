@@ -1,83 +1,102 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
   height: 100vh;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #ffe4ec, #ffffff);
+  background: linear-gradient(135deg, #ffd6e8, #ffffff);
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: Arial, sans-serif;
   overflow: hidden;
 }
 
-.container {
+.box {
   background: white;
   padding: 25px;
   border-radius: 22px;
+  text-align: center;
   width: 90%;
   max-width: 360px;
-  text-align: center;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
 }
 
 h1 {
-  color: #ff5fa2;
-  font-size: 22px;
+  color: #ff4f9a;
 }
 
-.tap-note {
-  font-size: 14px;
-  color: #ff5fa2;
+.hint {
+  font-size: 13px;
+  color: #ff4f9a;
 }
 
-.her-photo {
+.photo {
   width: 150px;
   height: 150px;
-  object-fit: cover;
   border-radius: 50%;
-  border: 5px solid #ff5fa2;
+  border: 5px solid #ff4f9a;
+  object-fit: cover;
   margin: 15px 0;
 }
 
-.final-question {
-  font-size: 18px;
-  color: #ff5fa2;
-  font-weight: bold;
+/* 💓 Heartbeat animation */
+.heartbeat {
+  animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.05); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 .buttons {
   position: relative;
-  height: 100px;
+  height: 90px;
 }
 
 button {
-  padding: 12px 22px;
+  padding: 12px 20px;
   font-size: 16px;
   border: none;
   border-radius: 14px;
   cursor: pointer;
 }
 
-#yesBtn {
-  background: #4CAF50;
+#yes {
+  background: #4caf50;
   color: white;
 }
 
-#noBtn {
-  background: #ff4d4d;
+#no {
+  background: #ff5252;
   color: white;
   position: absolute;
 }
 
-.special-message {
-  font-size: 15px;
-  color: #444;
-  background: #fff6fb;
-  padding: 14px;
+.message {
+  background: #fff0f7;
+  padding: 15px;
   border-radius: 14px;
+  color: #444;
   line-height: 1.6;
-  margin-top: 10px;
+  margin-top: 15px;
+}
+
+/* 🎉 Confetti */
+.confetti {
+  position: fixed;
+  font-size: 22px;
+  animation: confettiFall 3s linear forwards;
+}
+
+@keyframes confettiFall {
+  from {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
 }
