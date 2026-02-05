@@ -2,30 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Be My Valentine ❤️</title>
+  <title>Just One Question ❤️</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- 🎵 AUDIO MUST STAY OUTSIDE -->
-<audio id="bgMusic" loop preload="auto">
+<!-- 🎵 AUDIO (NEVER TOUCHED BY JS) -->
+<audio id="music" loop preload="auto">
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- 🔁 ONLY THIS CONTENT CHANGES -->
-<div id="app" class="container">
-  <h1>Do you think she’ll say yes? 🥹💖</h1>
-  <p class="tap-note">🔊 Tap anywhere to start music</p>
+<!-- 🔁 ONLY THIS DIV CHANGES -->
+<div id="app" class="box">
+  <h1>Do you love me? 🥺❤️</h1>
+  <p class="hint">🔊 Tap anywhere</p>
 
-  <img src="photo.jpg" class="her-photo" alt="Her photo">
-
-  <p class="final-question">Will you be my Valentine? 🌸</p>
+  <img src="her.jpg" class="photo">
 
   <div class="buttons">
-    <button id="yesBtn">Yes 💖</button>
-    <button id="noBtn">Think again 😏</button>
+    <button id="yes">Yes 😘</button>
+    <button id="no">No 🙃</button>
   </div>
 </div>
 
