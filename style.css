@@ -4,9 +4,9 @@
 
 body {
   margin: 0;
+  height: 100vh;
   font-family: Arial, sans-serif;
   background: linear-gradient(135deg, #ffe4ec, #ffffff);
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,7 +31,6 @@ h1 {
 .tap-note {
   font-size: 14px;
   color: #ff5fa2;
-  margin-bottom: 8px;
 }
 
 .her-photo {
@@ -43,7 +42,7 @@ h1 {
   margin: 15px 0;
 }
 
-.question {
+.final-question {
   font-size: 18px;
   color: #ff5fa2;
   font-weight: bold;
@@ -52,7 +51,6 @@ h1 {
 .buttons {
   position: relative;
   height: 100px;
-  margin-top: 10px;
 }
 
 button {
@@ -75,11 +73,11 @@ button {
 }
 
 .special-message {
+  font-size: 15px;
+  color: #444;
   background: #fff6fb;
   padding: 14px;
   border-radius: 14px;
-  font-size: 15px;
-  color: #444;
   line-height: 1.6;
-  margin-top: 12px;
+  margin-top: 10px;
 }
