@@ -9,7 +9,7 @@ body {
   overflow: hidden;
 }
 
-.box {
+.card {
   background: white;
   padding: 25px;
   border-radius: 22px;
@@ -23,7 +23,7 @@ h1 {
   color: #ff4f9a;
 }
 
-.hint {
+.tap {
   font-size: 13px;
   color: #ff4f9a;
 }
@@ -37,12 +37,12 @@ h1 {
   margin: 15px 0;
 }
 
-/* 💓 Heartbeat animation */
+/* 💓 heartbeat */
 .heartbeat {
-  animation: heartbeat 1.5s infinite;
+  animation: beat 1.5s infinite;
 }
 
-@keyframes heartbeat {
+@keyframes beat {
   0% { transform: scale(1); }
   25% { transform: scale(1.05); }
   50% { transform: scale(1); }
@@ -74,6 +74,18 @@ button {
   position: absolute;
 }
 
+/* 🎉 confetti */
+.confetti {
+  position: fixed;
+  font-size: 22px;
+  animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+  from { transform: translateY(-10vh); opacity: 1; }
+  to { transform: translateY(110vh); opacity: 0; }
+}
+
 .message {
   background: #fff0f7;
   padding: 15px;
@@ -81,22 +93,4 @@ button {
   color: #444;
   line-height: 1.6;
   margin-top: 15px;
-}
-
-/* 🎉 Confetti */
-.confetti {
-  position: fixed;
-  font-size: 22px;
-  animation: confettiFall 3s linear forwards;
-}
-
-@keyframes confettiFall {
-  from {
-    transform: translateY(-10vh) rotate(0deg);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(110vh) rotate(360deg);
-    opacity: 0;
-  }
 }
