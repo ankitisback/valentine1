@@ -1,77 +1,106 @@
-const music = document.getElementById("bgMusic");
+const music = document.getElementById("music");
 const app = document.getElementById("app");
-const yesBtn = document.getElementById("yesBtn");
-const noBtn = document.getElementById("noBtn");
+const yes = document.getElementById("yes");
+const no = document.getElementById("no");
 
-let musicStarted = false;
+let started = false;
 
-/* 🎵 START MUSIC – browser safe */
+/* 🎵 MUSIC – browser safe */
 function startMusic() {
-  if (musicStarted) return;
-
+  if (started) return;
   music.volume = 0.7;
-  music.play()
-    .then(() => {
-      musicStarted = true;
-      console.log("Music playing");
-    })
-    .catch(err => {
-      console.log("Music blocked until interaction", err);
-    });
+  music.play().then(() => {
+    started = true;
+  });
 }
 
-/* User interaction */
 document.addEventListener("click", startMusic);
 document.addEventListener("touchstart", startMusic);
 
-/* 😈 Move NO button */
-function moveNo() {
+/* 😈 NO button runs */
+no.addEventListener("mouseover", () => {
   const x = Math.random() * 200 - 100;
   const y = Math.random() * 200 - 100;
-  noBtn.style.transform = `translate(${x}px, ${y}px)`;
-}
-noBtn.addEventListener("mouseover", moveNo);
-noBtn.addEventListener("touchstart", moveNo);
+  no.style.transform = `translate(${x}px, ${y}px)`;
+});
 
-/* 💖 YES FLOW */
-yesBtn.addEventListener("click", () => {
-  startMusic(); // force music on YES
+/* 🎉 Confetti blast */
+function confettiBlast() {
+  const emojis = ["💖", "🎉", "✨", "😍", "❤️"];
+  for (let i = 0; i < 60; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.animationDuration = 2 + Math.random() * 2 + "s";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 4000);
+  }
+}
+
+/* ⌨️ Typewriter */
+function typeWriter(el, text, speed = 40) {
+  let i = 0;
+  el.innerHTML = "";
+  const interval = setInterval(() => {
+    el.innerHTML += text.charAt(i);
+    i++;
+    if (i >= text.length) clearInterval(interval);
+  }, speed);
+}
+
+/* ❤️ YES CLICK FLOW */
+yes.addEventListener("click", () => {
+  startMusic();
 
   app.innerHTML = `
-    <h2 style="color:#ff5fa2;">Processing your YES 💖</h2>
-    <p>Please wait… 🥹</p>
+    <h2 style="color:#ff4f9a;">Processing your YES 💖</h2>
+    <p>Thoda sa wait… 🥹</p>
 
     <div style="
       width:220px;
       height:14px;
-      border-radius:10px;
       background:#ffd6e8;
+      border-radius:10px;
       overflow:hidden;
     ">
-      <div id="loader" style="
+      <div id="bar" style="
         width:0%;
         height:100%;
-        background:#ff5fa2;
+        background:#ff4f9a;
         transition:width 3s;
       "></div>
     </div>
   `;
 
   setTimeout(() => {
-    document.getElementById("loader").style.width = "100%";
+    document.getElementById("bar").style.width = "100%";
   }, 100);
 
   setTimeout(() => {
     app.innerHTML = `
-      <img src="photo.jpg" class="her-photo">
-      <h1 style="color:#ff5fa2;">💖 YAYYYYY 💖</h1>
-
-      <div class="special-message">
-        From the moment you came into my life,<br>
-        everything felt brighter.<br><br>
-        I don’t just want today —<br>
-        I want every day with you 💕
-      </div>
+      <img src="her.jpg" class="photo heartbeat">
+      <h1>💖 Bhoomi 💖</h1>
+      <div class="message" id="loveMsg"></div>
     `;
+
+    const message = `Bhoomi,
+
+Tumhari ek “YES” ne sirf mera din nahi,
+meri poori duniya roshan kar di ❤️
+
+Tumhari muskurahat,
+tumhari baatein,
+aur tumhara saath —
+sab kuch mere liye bahut khaas hai.
+
+Main sirf aaj ke liye nahi,
+har kal, har pal,
+tumhare saath rehna chahta hoon ✨
+
+I love you 💕`;
+
+    typeWriter(document.getElementById("loveMsg"), message);
+    confettiBlast();
   }, 3500);
 });
